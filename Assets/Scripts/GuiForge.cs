@@ -26,7 +26,7 @@ public class GuiForge : MonoBehaviour
 
     void OnTriggerExit(){
         ForgeMenu.SetActive(false);
-        Cursor.lockState = CursorLockMode.None;
+        Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 

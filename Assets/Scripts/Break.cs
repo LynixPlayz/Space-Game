@@ -25,12 +25,13 @@
       public bool achivement1;
       public bool firstrun;
       public bool advancement4;
-      
+
       
       // Start is called before the first frame update    
       void Start() {
-          chance = 4;
-          firstrun = true;
+        chance = 4;
+        firstrun = true;
+        Cursor.lockState = CursorLockMode.Locked;
       }  
       
       // Update is called once per frame    
@@ -65,10 +66,11 @@
                     scripts.GetComponent<Inventory>();
                     Debug.Log(hit.transform.gameObject.tag);
                     Debug.Log(hit.transform.gameObject.name);
-                    if (scripts.GetComponent<UsableItem>().EquippedItem == ForgeGui.GetComponent<GuiForge>().pick){
+                    if (scripts.GetComponent<UsableItem>().EquippedItem == ForgeGui.GetComponent<GuiForge>().pick || scripts.GetComponent<UsableItem>().EquippedItem == ForgeGui.GetComponent<GuiForge>().sword && name.Contains("Gold Ore")){
+                        Destroy(hit.transform.gameObject);
+                    } else if (!name.Contains("Gold Ore")){
                         Destroy(hit.transform.gameObject);
                     }
-                    Destroy(hit.transform.gameObject);
                 }
             }
         }

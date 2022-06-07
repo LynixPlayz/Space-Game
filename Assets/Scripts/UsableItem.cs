@@ -27,7 +27,10 @@ public class UsableItem : MonoBehaviour
                 obtainedItems.Add("Pick");
             }
             else {
+                first = Player.transform.rotation;
+                Player.transform.rotation = Quaternion.identity;
                 Instantiate(EquippedItem, Player.transform.position + new Vector3(-0.32f, 0.34f, -0.6f), Quaternion.Euler(0, 0, 0), Player.transform);
+                Player.transform.rotation = first;
                 IsEquipped = false;
                 obtainedItems.Add("Sword");
             }

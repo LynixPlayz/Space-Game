@@ -26,14 +26,16 @@ public class Inventory : MonoBehaviour
         {
             if (open == true)
             {
+                Cursor.lockState = CursorLockMode.Locked;
                 inventorymenu.SetActive(false);
                 open = false;
             }
             else
             {
+                Cursor.lockState = CursorLockMode.None;
                 inventorymenu.SetActive(true);
                 open = true;
-            }       
+            }  
         }
         int scount = slots.Count();
         for (int i = 0; i < scount; i++) {
