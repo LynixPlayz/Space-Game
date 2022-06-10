@@ -37,10 +37,6 @@ public class Inventory : MonoBehaviour
                 open = true;
             }  
         }
-        int scount = slots.Count();
-        for (int i = 0; i < scount; i++) {
-            Debug.Log(slots[i]);
-        }
         plankText.text = PlankCount.ToString();
     }
 }
