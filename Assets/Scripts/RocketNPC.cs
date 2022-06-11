@@ -8,6 +8,9 @@ public class RocketNPC : MonoBehaviour
     public GameObject talkMenu;
     public GameObject puzzleUI;
     public Rigidbody playerRb;
+    public GameObject talkMenu2;
+    public GameObject camera;
+    public GameObject rotateCamera;
 
     void Start(){}
 
@@ -19,6 +22,8 @@ public class RocketNPC : MonoBehaviour
             talkMenu.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            playerRb.constraints = RigidbodyConstraints.FreezeAll;
+            GameObject.Find("Player").GetComponent<RigidbodyWalker>().lookSpeed = 0;
         }
     }
 
@@ -33,11 +38,24 @@ public class RocketNPC : MonoBehaviour
     public void cancelButton()
     {
         talkMenu.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        playerRb.constraints = RigidbodyConstraints.None;
     }
     public void nextButton()
     {
         talkMenu.SetActive(false);
         puzzleUI.SetActive(true);
-        playerRb.constraints = RigidbodyConstraints.FreezePosition;
+        playerRb.constraints = RigidbodyConstraints.FreezeAll;
+    }
+    public void nextButton2()
+    {
+        camera.SetActive(true);
+		rotateCamera.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        playerRb.constraints = RigidbodyConstraints.None;
+        GameObject.Find("Player").GetComponent<RigidbodyWalker>().lookSpeed = 2;
+        talkMenu2.SetActive(false);
     }
 }

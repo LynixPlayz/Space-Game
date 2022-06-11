@@ -46,18 +46,19 @@ public class EnvController : MonoBehaviour
         while (treeObjCount < treeMaxObjects)
         {
             Vector3 randomPoint = Random.onUnitSphere * planetSize;
+            if (randomPoint.y <= 65){
+                Transform obj = Instantiate(treePrefab, randomPoint, Quaternion.identity).transform;
 
-            Transform obj = Instantiate(treePrefab, randomPoint, Quaternion.identity).transform;
+                obj.name = "Tree " + treeObjCount;
+                obj.parent = holder;
 
-            obj.name = "Tree " + treeObjCount;
-            obj.parent = holder;
+                Vector3 gravityUp = (obj.position - transform.position).normalized;
+                Vector3 localUp = obj.transform.up;
 
-            Vector3 gravityUp = (obj.position - transform.position).normalized;
-            Vector3 localUp = obj.transform.up;
+                obj.rotation = Quaternion.FromToRotation(localUp, gravityUp) * obj.rotation;
 
-            obj.rotation = Quaternion.FromToRotation(localUp, gravityUp) * obj.rotation;
-
-            treeObjCount++;
+                treeObjCount++;
+            }
         }
     }
     public void GenerateRocks()
@@ -68,18 +69,20 @@ public class EnvController : MonoBehaviour
         while (rockObjCount < rockMaxObjects)
         {
             Vector3 randomPoint = Random.onUnitSphere * planetSize;
+            
+            if (randomPoint.y <= 65){
+                Transform obj = Instantiate(rockPrefab, randomPoint, Quaternion.identity).transform;
 
-            Transform obj = Instantiate(rockPrefab, randomPoint, Quaternion.identity).transform;
+                obj.name = "Rock " + rockObjCount;
+                obj.parent = holder;
 
-            obj.name = "Rock " + rockObjCount;
-            obj.parent = holder;
+                Vector3 gravityUp = (obj.position - transform.position).normalized;
+                Vector3 localUp = obj.transform.up;
 
-            Vector3 gravityUp = (obj.position - transform.position).normalized;
-            Vector3 localUp = obj.transform.up;
+                obj.rotation = Quaternion.FromToRotation(localUp, gravityUp) * obj.rotation;
 
-            obj.rotation = Quaternion.FromToRotation(localUp, gravityUp) * obj.rotation;
-
-            rockObjCount++;
+                rockObjCount++;
+            }
         }
     }
 
@@ -93,18 +96,20 @@ public class EnvController : MonoBehaviour
             Vector3 randomPoint = Random.onUnitSphere * (planetSize - 3.5f);
             float randomNumber = Random.Range(5.0f, 15.0f);
 
-            Transform obj = Instantiate(mountainPrefab, randomPoint, Quaternion.identity).transform;
-            obj.transform.localScale = new Vector3(randomNumber, randomNumber, randomNumber);
+            if (randomPoint.y <= 65){
+                Transform obj = Instantiate(mountainPrefab, randomPoint, Quaternion.identity).transform;
+                obj.transform.localScale = new Vector3(randomNumber, randomNumber, randomNumber);
 
-            obj.name = "Mountain " + mountainObjCount;
-            obj.parent = holder;
+                obj.name = "Mountain " + mountainObjCount;
+                obj.parent = holder;
 
-            Vector3 gravityUp = (obj.position - transform.position).normalized;
-            Vector3 localUp = obj.transform.up;
+                Vector3 gravityUp = (obj.position - transform.position).normalized;
+                Vector3 localUp = obj.transform.up;
 
-            obj.rotation = Quaternion.FromToRotation(localUp, gravityUp) * obj.rotation;
+                obj.rotation = Quaternion.FromToRotation(localUp, gravityUp) * obj.rotation;
 
-            mountainObjCount++;
+                mountainObjCount++;
+            }
         }
     }
 
