@@ -11,6 +11,9 @@ public class Walls : MonoBehaviour
     public GameObject camera;
     public GameObject rotateCamera;
     public GameObject secondChat;
+    public GameObject selector;
+    public GameObject Rotater;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +37,8 @@ public class Walls : MonoBehaviour
             camera.SetActive(false);
             rotateCamera.SetActive(true);
             secondChat.SetActive(true);
-            GameObject.Find("selector").SetActive(true);
+            selector.SetActive(true);
+            Rotater.GetComponent<CameraRotate>().doRotate = true;
         }
     }
 }

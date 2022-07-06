@@ -27,12 +27,14 @@ public class Inventory : MonoBehaviour
             if (open == true)
             {
                 Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
                 inventorymenu.SetActive(false);
                 open = false;
             }
             else
             {
                 Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 inventorymenu.SetActive(true);
                 open = true;
             }  

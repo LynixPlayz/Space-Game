@@ -5,6 +5,8 @@ using UnityEngine;
 public class CameraRotate : MonoBehaviour
 {
     public Transform target;
+    public bool doRotate;
+
     void Start()
     {
         
@@ -12,7 +14,9 @@ public class CameraRotate : MonoBehaviour
 
     void Update()
     {
-        transform.LookAt(target);
-        transform.Translate(Vector3.right * Time.deltaTime);
+        if (doRotate == true){
+            transform.LookAt(target);
+            transform.Translate(Vector3.right * Time.deltaTime);
+        }
     }
 }

@@ -17,7 +17,7 @@ public class UsableItem : MonoBehaviour
     void Update()
     {
         if (IsEquipped == true){
-            if (EquippedItem == ForgeGui.GetComponent<GuiForge>().pick){
+            if (obtainedItems.Contains("Pick")){
                 first = Player.transform.rotation;
                 Player.transform.rotation = Quaternion.identity;
                 Transform obj = Instantiate(EquippedItem, Player.transform.position + new Vector3(-0.46f, 0.34f, 0.6f), Player.transform.rotation, Player.transform).transform;

@@ -19,9 +19,7 @@ public class typewriterUI : MonoBehaviour
 	[SerializeField] string leadingChar = "";
 	[SerializeField] bool leadingCharBeforeDelay = false;
 
-	public GameObject camera;
-    public GameObject rotateCamera;
-	public GameObject text;
+	public GameObject startButton;
 
 	// Use this for initialization
 	void Start()
@@ -88,6 +86,9 @@ public class typewriterUI : MonoBehaviour
 			yield return new WaitForSeconds(timeBtwChars);
 		}
 		
+		yield return new WaitForSeconds(1);
+		startButton.SetActive(true);
+
 		if (leadingChar != "")
 		{
 			_tmpProText.text = _tmpProText.text.Substring(0, _tmpProText.text.Length - leadingChar.Length);

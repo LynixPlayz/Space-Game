@@ -11,6 +11,9 @@ public class RocketNPC : MonoBehaviour
     public GameObject talkMenu2;
     public GameObject camera;
     public GameObject rotateCamera;
+    public GameObject player;
+    public GameObject Rotater;
+
 
     void Start(){}
 
@@ -23,7 +26,7 @@ public class RocketNPC : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             playerRb.constraints = RigidbodyConstraints.FreezeAll;
-            GameObject.Find("Player").GetComponent<RigidbodyWalker>().lookSpeed = 0;
+            player.GetComponent<RigidbodyWalker>().lookSpeed = 0;
         }
     }
 
@@ -57,5 +60,6 @@ public class RocketNPC : MonoBehaviour
         playerRb.constraints = RigidbodyConstraints.None;
         GameObject.Find("Player").GetComponent<RigidbodyWalker>().lookSpeed = 2;
         talkMenu2.SetActive(false);
+        Rotater.GetComponent<CameraRotate>().doRotate = false;
     }
 }
