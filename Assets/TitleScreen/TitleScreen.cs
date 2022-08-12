@@ -6,12 +6,14 @@ public class TitleScreen : MonoBehaviour
 {
     public Animator cameraAnimation;
     public GameObject titleCanvas;
+    public bool doesSpin = true;
 
     void Start(){}
     void Update(){}
 
     public void CameraAnim()
     {
+        doesSpin = false;
         titleCanvas.SetActive(false);
         cameraAnimation.SetBool("IsPlayed", true);
         StartCoroutine(Wait());
@@ -20,6 +22,7 @@ public class TitleScreen : MonoBehaviour
     IEnumerator Wait()
     {
         yield return new WaitForSeconds(0.5f);
+
         cameraAnimation.SetBool("IsPlayed", false);
     }
 }

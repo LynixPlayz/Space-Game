@@ -8,6 +8,7 @@ public class PlanetGravity : MonoBehaviour
     [SerializeField]public bool alignToPlanet = true;
     [SerializeField] float gravityConstant = 9.8f;
     [SerializeField] Rigidbody r;
+    public Quaternion predictedRotation;
 
 
     void Start()
@@ -15,7 +16,7 @@ public class PlanetGravity : MonoBehaviour
         r = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         Vector3 toCenter = planet.position - transform.position;
         toCenter.Normalize();

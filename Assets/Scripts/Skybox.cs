@@ -23,6 +23,7 @@ public class Skybox : MonoBehaviour
             isNight = false;
         }
     }
+    
     void FixedUpdate()
     {
         if(isNight == true)
