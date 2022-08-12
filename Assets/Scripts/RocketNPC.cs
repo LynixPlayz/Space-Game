@@ -58,6 +58,7 @@ public class RocketNPC : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         playerRb.constraints = RigidbodyConstraints.None;
+        playerRb.freezeRotation = true;
         GameObject.Find("Player").GetComponent<RigidbodyWalker>().lookSpeed = 2;
         talkMenu2.SetActive(false);
         Rotater.GetComponent<CameraRotate>().doRotate = false;
