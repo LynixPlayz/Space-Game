@@ -52,7 +52,7 @@ public class SceneSelector : MonoBehaviour
         buttonText = getButton.GetComponentInChildren<Text>().text;
         if (buttonText == "Earth")
         {
-            SceneManager.LoadScene("earth");
+            SceneManager.LoadScene("Earth");
             Debug.Log("Earth");
         }
         else if (buttonText == "Moon")

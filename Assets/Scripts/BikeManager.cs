@@ -22,8 +22,9 @@ public class BikeManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.LeftControl))
             {
+                
                 playerObject.transform.position = bike.transform.position + new Vector3(0f, 3f, 0f);
-                bike.transform.rotation = Quaternion.Euler(playerObject.transform.rotation.eulerAngles + new Vector3(0f, 90f, 0f));
+                //bike.transform.rotation = Quaternion.Euler(playerObject.transform.rotation.eulerAngles + new Vector3(0f, 90f, 0f));
                 bike.transform.parent = playerObject.transform;
                 getOnMenu.SetActive(false);
                 getOffMenu.SetActive(true);

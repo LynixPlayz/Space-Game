@@ -16,6 +16,10 @@ public class ButtonListControl : MonoBehaviour
 
     public bool advancement2;
 
+    public GameObject playerObject;
+
+    public Main Main;
+
     void Start()
     {
         
@@ -51,10 +55,16 @@ public class ButtonListControl : MonoBehaviour
     public void ButtonClicked(string myTextString)
     {
         Debug.Log("Button clicked: " + myTextString);
-        //SceneManager.LoadScene(myTextString);
+        SceneManager.LoadScene(myTextString);
         if(myTextString == "Moon"){
+            Main.MoonFunction();
             advancement2 = true;
         }
+        else if(myTextString == "Earth")
+        {
+            Main.EarthFunction();
+        }
+
     }
 }
 

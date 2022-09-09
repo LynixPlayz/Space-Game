@@ -2019,6 +2019,7 @@ GameObject:
   - component: {fileID: 349795580}
   - component: {fileID: 349795581}
   - component: {fileID: 349795582}
+  - component: {fileID: 349795583}
   m_Layer: 0
   m_Name: ScriptManager
   m_TagString: Untagged
@@ -2158,6 +2159,28 @@ MonoBehaviour:
   dot1: {fileID: 1899201052}
   dot2: {fileID: 1119013030}
   dot3: {fileID: 1903392612}
+--- !u!114 &349795583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349795574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 596f9dba916bc06499dd4c18fe6ba3a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planetColor: {r: 0.20930092, g: 0.9622642, b: 0.14887854, a: 0}
+  planetMaterial: {fileID: 2100000, guid: b5b2ed62bc1d53e48803eed0fe2aa464, type: 2}
+  MoonColor: {r: 0.3490566, g: 0.3490566, b: 0.3490566, a: 0}
+  EarthColor: {r: 0.030259816, g: 0.9433962, b: 0.113216184, a: 0}
+  texture: {fileID: 0}
+  colortrigger: {r: 0, g: 0, b: 0, a: 0}
+  oldcolor: {r: 0, g: 0, b: 0, a: 0}
+  rigidbodyWalker: {fileID: 1725624464}
+  scene:
+    m_Handle: 0
 --- !u!1 &353314768
 GameObject:
   m_ObjectHideFlags: 0
@@ -5250,7 +5273,7 @@ Transform:
   - {fileID: 385807810}
   - {fileID: 1889117845}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &791307008
 GameObject:
@@ -6539,6 +6562,8 @@ MonoBehaviour:
   - Earth
   - Moon
   advancement2: 0
+  playerObject: {fileID: 1725624460}
+  Main: {fileID: 349795583}
 --- !u!1001 &960144258
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11483,6 +11508,8 @@ MonoBehaviour:
   gravityConstant: 9.8
   r: {fileID: 1725624462}
   predictedRotation: {x: 0, y: 0, z: 0, w: 0}
+  deltaRotation: {x: 0, y: 0, z: 0, w: 0}
+  walker: {fileID: 0}
 --- !u!114 &1725624464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11506,6 +11533,7 @@ MonoBehaviour:
   timesSpeed: 1
   sprintSpeed: 2
   sprinting: 0
+  deltaRotation: {x: 0, y: 0, z: 0, w: 0}
   grounded: 0
   rotation: {x: 0, y: 0}
 --- !u!4 &1725624465
@@ -11524,7 +11552,7 @@ Transform:
   - {fileID: 791307009}
   - {fileID: 571031194}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1725624466
 MonoBehaviour:

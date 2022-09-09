@@ -20,6 +20,7 @@ public class RigidbodyWalker : MonoBehaviour
     public float timesSpeed = 1.0f;
     public float sprintSpeed;
     public bool sprinting;
+    public Quaternion deltaRotation;
 
 
     public bool grounded = false;
@@ -47,7 +48,7 @@ public class RigidbodyWalker : MonoBehaviour
         Quaternion localRotation = Quaternion.Euler(0f, 0f, 0f);
         if (player.GetComponent<ChildTest>().controlType != true)
         {
-            localRotation = Quaternion.Euler(0f, 0f, 0f);
+            localRotation = Quaternion.Euler(0f, Input.GetAxis("Horizontal") * lookSpeed, 0f);
         }
         else
         {
@@ -106,7 +107,7 @@ public class RigidbodyWalker : MonoBehaviour
                 Vector3 forwardDir = Vector3.Cross(transform.up, -playerCamera.transform.right).normalized;
                 //Vector3 rightDir = Vector3.Cross(transform.up, playerCamera.transform.forward).normalized;
                 Vector3 targetVelocity = (forwardDir * Input.GetAxis("Vertical")) * (speed * timesSpeed);
-                Vector3 targetRotation = new Vector3(0f, Input.GetAxis("Horizontal") * lookSpeed * 100, 0f);
+                //Vector3 targetRotation = new Vector3(0f, Input.GetAxis("Horizontal") * lookSpeed * 100, 0f);
 
 
                 Vector3 velocity = transform.InverseTransformDirection(r.velocity);
@@ -118,11 +119,11 @@ public class RigidbodyWalker : MonoBehaviour
                 velocityChange.y = 0;
                 velocityChange = transform.TransformDirection(velocityChange);
 
-                Quaternion deltaRotation = Quaternion.Euler(targetRotation * Time.fixedDeltaTime);
+                //deltaRotation = Quaternion.Euler(targetRotation * Time.fixedDeltaTime);
 
                 Debug.Log("Rotation 1");
                 r.AddForce(velocityChange, ForceMode.VelocityChange);
-                r.MoveRotation((r.rotation * deltaRotation));
+                ///r.MoveRotation((r.rotation * deltaRotation));
 
                 if (Input.GetButton("Jump") && canJump)
                 {
@@ -156,7 +157,7 @@ public class RigidbodyWalker : MonoBehaviour
         if (player.GetComponent<ChildTest>().controlType != true)
         {
             Vector3 targetRotation = new Vector3(0f, Input.GetAxis("Horizontal") * lookSpeed * 100, 0f);
-            Quaternion deltaRotation = Quaternion.Euler(targetRotation * Time.fixedDeltaTime);
+            deltaRotation = Quaternion.Euler(targetRotation * Time.fixedDeltaTime);
             r.MoveRotation((r.rotation * deltaRotation));
         }
         grounded = false;
