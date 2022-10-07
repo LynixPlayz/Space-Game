@@ -65,26 +65,22 @@ public class RigidbodyWalker : MonoBehaviour
             {
                 if (timesSpeed <= (2.50f + sprintSpeed)){
                     timesSpeed *= 1.0005f; 
-                    print("Sprint [" + timesSpeed + "]");
                 }
             }
             else
             {
                 if (timesSpeed <= (2.50f)){
                     timesSpeed = timesSpeed * 1.0005f; 
-                    print("Walk [" + timesSpeed + "]");
                 }
             }
         }
         else {
             if (timesSpeed >= 2){
                 timesSpeed /= 1.2f;
-                print("Delete [" + timesSpeed + "]");
             }
         }
         if (timesSpeed <= 1){
             timesSpeed = 1;
-            print("Set [" + timesSpeed + "]");
         }
 
         if (Input.GetKey(KeyCode.LeftShift)) {

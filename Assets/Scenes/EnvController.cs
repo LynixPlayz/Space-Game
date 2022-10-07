@@ -4,76 +4,65 @@ using UnityEngine;
 
 public class EnvController : MonoBehaviour
 {
-//  Tree
+//  
     public GameObject treePrefab;
     public int treeObjCount = 0;
     public float treeMaxObjects = 10;
 
-//  Rock
+//  
     public GameObject rockPrefab;
     public int rockObjCount = 0;
     public float rockMaxObjects = 10;
 
-// Mountains
+// s
     public GameObject mountainPrefab;
     public int mountainObjCount = 0;
     public float mountainMaxObjects = 20;
 
-//  Gold
+//  
     public GameObject goldPrefab;
     public int goldObjCount = 0;
     public float goldMaxObjects = 10;
 
+//  Rainbow
+    public GameObject rainbowPrefab;
+    public int rainbowObjCount = 0;
+    public float rainbowMaxObjects = 10;
+
 //  Other
     public GameObject holder;
-    public float planetSize = 25f;
-    
-    
+    public GameObject planetObj;
 
     void Awake()
     {
-        GenerateTrees();
-        GenerateRocks();
-        GenerateMountains();
-        GenerateGold();
-    }
-
-    public void GenerateTrees()
-    {
-        Transform holder = new GameObject("Environment").transform;
-        holder.parent = transform;
-
-        while (treeObjCount < treeMaxObjects)
+        if (planetObj)
         {
-            Vector3 randomPoint = Random.onUnitSphere * planetSize;
-            if (randomPoint.y <= 65){
-                Transform obj = Instantiate(treePrefab, randomPoint, Quaternion.identity).transform;
-
-                obj.name = "Tree " + treeObjCount;
-                obj.parent = holder;
-
-                Vector3 gravityUp = (obj.position - transform.position).normalized;
-                Vector3 localUp = obj.transform.up;
-
-                obj.rotation = Quaternion.FromToRotation(localUp, gravityUp) * obj.rotation;
-
-                treeObjCount++;
-            }
+            Debug.Log(planetObj.transform.localScale.x);
+            GenerateObject(treePrefab, treeObjCount, treeMaxObjects, 72);
+            GenerateObject(rockPrefab, rockObjCount, rockMaxObjects, 72);
+            GenerateMountains();
+            GenerateObject(goldPrefab, goldObjCount, goldMaxObjects, 72);
+            GenerateObject(rainbowPrefab, rainbowObjCount, rainbowMaxObjects, 72);
         }
+        else
+        {
+            Debug.Log("You are a idiot future alex");
+        }
+        
     }
-    public void GenerateRocks()
+
+    public void GenerateObject(GameObject Prefab, int ObjCount, float MaxObjects, float planetSize)
     {
         Transform holder = new GameObject("Environment").transform;
         holder.parent = transform;
 
-        while (rockObjCount < rockMaxObjects)
+        while (ObjCount < MaxObjects)
         {
             Vector3 randomPoint = Random.onUnitSphere * planetSize;
-            
             if (randomPoint.y <= 65){
-                Transform obj = Instantiate(rockPrefab, randomPoint, Quaternion.identity).transform;
+                Transform obj = Instantiate(Prefab, randomPoint, Quaternion.identity).transform;
 
-                obj.name = "Rock " + rockObjCount;
+                obj.name = Prefab.name + ObjCount;
                 obj.parent = holder;
 
                 Vector3 gravityUp = (obj.position - transform.position).normalized;
@@ -81,7 +70,7 @@ public class EnvController : MonoBehaviour
 
                 obj.rotation = Quaternion.FromToRotation(localUp, gravityUp) * obj.rotation;
 
-                rockObjCount++;
+                ObjCount++;
             }
         }
     }
@@ -93,7 +82,7 @@ public class EnvController : MonoBehaviour
 
         while (mountainObjCount < mountainMaxObjects)
         {
-            Vector3 randomPoint = Random.onUnitSphere * (planetSize - 3.5f);
+            Vector3 randomPoint = Random.onUnitSphere * (68.69f);
             float randomNumber = Random.Range(5.0f, 15.0f);
 
             if (randomPoint.y <= 65){
@@ -112,27 +101,5 @@ public class EnvController : MonoBehaviour
             }
         }
     }
-
-    public void GenerateGold()
-    {
-        Transform holder = new GameObject("Environment").transform;
-        holder.parent = transform;
-
-        while (goldObjCount < goldMaxObjects)
-        {
-            Vector3 randomPoint = Random.onUnitSphere * planetSize;
-
-            Transform obj = Instantiate(goldPrefab, randomPoint, Quaternion.identity).transform;
-
-            obj.name = "Gold Ore " + goldObjCount;
-            obj.parent = holder;
-
-            Vector3 gravityUp = (obj.position - transform.position).normalized;
-            Vector3 localUp = obj.transform.up;
-
-            obj.rotation = Quaternion.FromToRotation(localUp, gravityUp) * obj.rotation;
-
-            goldObjCount++;
-        }
-    }
+    
 }

@@ -17,9 +17,11 @@
       public int treeCount;
       public int rockCount;
       public int goldCount;
+      public int rainbowCount;
       public Text treeText;
       public Text rockText;
       public Text goldText;
+      public Text rainbowText;
       public int chance;
       public bool achivement1;
       public bool firstrun;
@@ -61,13 +63,18 @@
                         scripts.GetComponent<Inventory>().slots.Add("Rock");
                         rockCount += 1;
                     }
-                    else if (name.Contains("Gold Ore") && scripts.GetComponent<UsableItem>().EquippedItem == ForgeGui.GetComponent<GuiForge>().pick) {
+                    else if (name.Contains("gold ore") && scripts.GetComponent<UsableItem>().EquippedItem == ForgeGui.GetComponent<GuiForge>().pick) {
                         int num = Random.Range(0, chance);
                         if (num == 0){
                             achivement1 = true;
                         }
                         goldCount += num;
                     }
+                    else if (name.Contains("rainbowinium")) {
+                        scripts.GetComponent<Inventory>().slots.Add("Rainbowinium");
+                        rainbowCount += 1;
+                    }
+                    
                     Debug.Log(treeCount + " || " + rockCount);
 
 
@@ -75,9 +82,9 @@
                     scripts.GetComponent<Inventory>();
                     Debug.Log(hit.transform.gameObject.tag);
                     Debug.Log(hit.transform.gameObject.name);
-                    if (scripts.GetComponent<UsableItem>().EquippedItem == ForgeGui.GetComponent<GuiForge>().pick || scripts.GetComponent<UsableItem>().EquippedItem == ForgeGui.GetComponent<GuiForge>().sword && name.Contains("Gold Ore")){
+                    if (scripts.GetComponent<UsableItem>().EquippedItem == ForgeGui.GetComponent<GuiForge>().pick || scripts.GetComponent<UsableItem>().EquippedItem == ForgeGui.GetComponent<GuiForge>().sword && name.Contains("gold ore")){
                         Destroy(hit.transform.gameObject);
-                    } else if (!name.Contains("Gold Ore")){
+                    } else if (!name.Contains("gold ore")){
                         Destroy(hit.transform.gameObject);
                     }
                 }
@@ -86,6 +93,7 @@
         treeText.text = treeCount.ToString();
         rockText.text = rockCount.ToString();
         goldText.text = goldCount.ToString();
+        rainbowText.text = rainbowCount.ToString();
         if (goldCount >= 60 && firstrun == true){
             advancement4 = true;
             firstrun = false;
